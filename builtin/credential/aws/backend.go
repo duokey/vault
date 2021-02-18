@@ -155,25 +155,25 @@ func Backend(_ *logical.BackendConfig) (*backend, error) {
 			b.pathListCertificates(),
 
 			b.pathConfigTidyRoletagDenyList(),
-			b.deprecate(b.pathConfigTidyRoletagDenyList()),
+			b.genDeprecatedPath(b.pathConfigTidyRoletagDenyList()),
 
 			b.pathConfigTidyIdentityAccessList(),
-			b.deprecate(b.pathConfigTidyIdentityAccessList()),
+			b.genDeprecatedPath(b.pathConfigTidyIdentityAccessList()),
 
 			b.pathListRoletagDenyList(),
-			b.deprecate(b.pathRoletagDenyList()),
+			b.genDeprecatedPath(b.pathRoletagDenyList()),
 
 			b.pathTidyRoletagDenyList(),
-			b.deprecate(b.pathTidyRoletagDenyList()),
+			b.genDeprecatedPath(b.pathTidyRoletagDenyList()),
 
 			b.pathListIdentityAccessList(),
-			b.deprecate(b.pathListIdentityAccessList()),
+			b.genDeprecatedPath(b.pathListIdentityAccessList()),
 
 			b.pathIdentityAccessList(),
-			b.deprecate(b.pathIdentityAccessList()),
+			b.genDeprecatedPath(b.pathIdentityAccessList()),
 
 			b.pathTidyIdentityAccessList(),
-			b.deprecate(b.pathTidyIdentityAccessList()),
+			b.genDeprecatedPath(b.pathTidyIdentityAccessList()),
 		},
 		Invalidate:     b.invalidate,
 		InitializeFunc: b.initialize,
@@ -330,9 +330,9 @@ func (b *backend) resolveArnToRealUniqueId(ctx context.Context, s logical.Storag
 	}
 }
 
-// deprecate will return a deprecated version of a framework.Path. The will include
+// genDeprecatedPath will return a deprecated version of a framework.Path. The will include
 // using deprecated terms in the path pattern, and marking the path as deprecated.
-func (b *backend) deprecate(path *framework.Path) *framework.Path {
+func (b *backend) genDeprecatedPath(path *framework.Path) *framework.Path {
 	pathDeprecated := *path
 	pathDeprecated.Pattern = b.deprecatedTerms.Replace(path.Pattern)
 	pathDeprecated.Deprecated = true
