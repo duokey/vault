@@ -183,6 +183,9 @@ func configureWrapper(configKMS *KMS, infoKeys *[]string, info *map[string]strin
 	case wrapping.AzureKeyVault:
 		wrapper, kmsInfo, err = GetAzureKeyVaultKMSFunc(opts, configKMS)
 
+	case wrapping.DuoKeyKMS:
+		wrapper, kmsInfo, err = GetDuoKeyKMSFunc(opts, configKMS)
+
 	case wrapping.GCPCKMS:
 		wrapper, kmsInfo, err = GetGCPCKMSKMSFunc(opts, configKMS)
 
@@ -287,6 +290,22 @@ func GetAzureKeyVaultKMSFunc(opts *wrapping.WrapperOptions, kms *KMS) (wrapping.
 	}
 	return wrapper, info, nil
 }
+
+func GetDuoKeyKMSFunc(opts *wrapping.WrapperOptions, kms *KMS) (wrapping.Wrapper, map[string]string, error) {
+    wrapper := duokeywrapper.NewWrapper(opts)
+    wrapperInfo, err := wrapper.SetConfig(kms.Config)
+    if err != nil {
+      return nil, nil, err
+    }
+
+    info := make(map[string]string)
+    if wrapperInfo != nil {
+      info["DuoKey KMS Key ID"] = wrapperInfo["key_id"]
+      info["DuoKey KMS Tenant ID"] = wrapperInfo("tenant_id")
+      info["DuoKey KMS Vault ID"] = wrapperInfo("vault_id")
+    }
+    return wrapper, info, nil
+  }
 
 func GetGCPCKMSKMSFunc(opts *wrapping.WrapperOptions, kms *KMS) (wrapping.Wrapper, map[string]string, error) {
 	wrapper := gcpckms.NewWrapper(opts)

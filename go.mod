@@ -1,10 +1,12 @@
-module github.com/hashicorp/vault
+module github.com/duokey/vault
 
 go 1.13
 
 replace github.com/hashicorp/vault/api => ./api
 
 replace github.com/hashicorp/vault/sdk => ./sdk
+
+replace github.com/hashicorp/go-kms-wrapping => github.com/duokey/go-kms-wrapping v0.7.0
 
 require (
 	cloud.google.com/go v0.56.0
