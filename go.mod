@@ -8,7 +8,7 @@ replace github.com/hashicorp/vault/sdk => ./sdk
 
 replace github.com/hashicorp/go-kms-wrapping => github.com/duokey/go-kms-wrapping v0.7.5
 
-replace github.com/hashicorp/vault => github.com/duokey/vault v0.7.5
+replace github.com/hashicorp/vault => github.com/duokey/vault v1.6.3
 
 replace google.golang.org/grpc => google.golang.org/grpc v1.29.1
 
