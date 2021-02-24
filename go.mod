@@ -6,7 +6,11 @@ replace github.com/hashicorp/vault/api => ./api
 
 replace github.com/hashicorp/vault/sdk => ./sdk
 
-replace github.com/hashicorp/go-kms-wrapping => github.com/duokey/go-kms-wrapping v0.7.1
+replace github.com/hashicorp/go-kms-wrapping => github.com/duokey/go-kms-wrapping v0.7.5
+
+replace github.com/hashicorp/vault => github.com/duokey/vault v0.7.5
+
+replace google.golang.org/grpc => google.golang.org/grpc v1.29.1
 
 require (
 	cloud.google.com/go v0.65.0
@@ -55,7 +59,7 @@ require (
 	github.com/google/go-github v17.0.0+incompatible
 	github.com/google/go-metrics-stackdriver v0.2.0
 	github.com/hashicorp/cap v0.0.0-20210204173447-5fcddadbf7c7 // indirect
-	github.com/hashicorp/consul-template v0.25.2-0.20210123001810-166043f8559d
+	github.com/hashicorp/consul-template v0.25.2
 	github.com/hashicorp/consul/api v1.4.0
 	github.com/hashicorp/errwrap v1.1.0
 	github.com/hashicorp/go-bindata v3.0.8-0.20180209072458-bf7910af8997+incompatible

@@ -10,6 +10,7 @@ import (
 	"github.com/hashicorp/go-hclog"
 	wrapping "github.com/hashicorp/go-kms-wrapping"
 	aeadwrapper "github.com/hashicorp/go-kms-wrapping/wrappers/aead"
+	duokeywrapper "github.com/hashicorp/go-kms-wrapping/wrappers/duokey"
 	"github.com/hashicorp/go-kms-wrapping/wrappers/alicloudkms"
 	"github.com/hashicorp/go-kms-wrapping/wrappers/awskms"
 	"github.com/hashicorp/go-kms-wrapping/wrappers/azurekeyvault"
@@ -167,6 +168,8 @@ func configureWrapper(configKMS *KMS, infoKeys *[]string, info *map[string]strin
 		Logger: logger,
 	}
 
+	fmt.Println("=== " + configKMS.Type)
+
 	switch configKMS.Type {
 	case wrapping.Shamir:
 		return nil, nil
@@ -184,6 +187,7 @@ func configureWrapper(configKMS *KMS, infoKeys *[]string, info *map[string]strin
 		wrapper, kmsInfo, err = GetAzureKeyVaultKMSFunc(opts, configKMS)
 
 	case wrapping.DuoKeyKMS:
+		fmt.Println("=== DuoKey")
 		wrapper, kmsInfo, err = GetDuoKeyKMSFunc(opts, configKMS)
 
 	case wrapping.GCPCKMS:
@@ -301,8 +305,8 @@ func GetDuoKeyKMSFunc(opts *wrapping.WrapperOptions, kms *KMS) (wrapping.Wrapper
     info := make(map[string]string)
     if wrapperInfo != nil {
       info["DuoKey KMS Key ID"] = wrapperInfo["key_id"]
-      info["DuoKey KMS Tenant ID"] = wrapperInfo("tenant_id")
-      info["DuoKey KMS Vault ID"] = wrapperInfo("vault_id")
+      info["DuoKey KMS Tenant ID"] = wrapperInfo["tenant_id"]
+      info["DuoKey KMS Vault ID"] = wrapperInfo["vault_id"]
     }
     return wrapper, info, nil
   }
