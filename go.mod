@@ -1,4 +1,4 @@
-module github.com/duokey/vault
+module github.com/hashicorp/vault
 
 go 1.13
 
@@ -8,7 +8,7 @@ replace github.com/hashicorp/vault/sdk => ./sdk
 
 replace github.com/hashicorp/go-kms-wrapping => github.com/duokey/go-kms-wrapping v0.7.5
 
-replace github.com/hashicorp/vault => github.com/duokey/vault v1.6.4
+//replace github.com/hashicorp/vault => github.com/duokey/vault v1.6.4
 
 replace google.golang.org/grpc => google.golang.org/grpc v1.29.1
 
@@ -82,7 +82,6 @@ require (
 	github.com/hashicorp/nomad/api v0.0.0-20191220223628-edc62acd919d
 	github.com/hashicorp/raft v1.1.3-0.20201002073007-f367681f9c48
 	github.com/hashicorp/raft-snapshot v1.0.3
-	github.com/hashicorp/vault v1.6.2
 	github.com/hashicorp/vault-plugin-auth-alicloud v0.7.0
 	github.com/hashicorp/vault-plugin-auth-azure v0.6.0
 	github.com/hashicorp/vault-plugin-auth-centrify v0.7.0

@@ -324,6 +324,8 @@ github.com/duokey/go-kms-wrapping v0.7.4 h1:WBD/dde34r+Gfc5RtKjbJXxqG/tudaeD81JK
 github.com/duokey/go-kms-wrapping v0.7.4/go.mod h1:+ukQV+NV3HPXRVqBx0hG6IXxC8uY/yEI2MMEDgdmHyg=
 github.com/duokey/go-kms-wrapping v0.7.5 h1:+GeRoZaE4+y5Oi4GiQ6i876/hQ6qDL1Kf8Qc55dPdfs=
 github.com/duokey/go-kms-wrapping v0.7.5/go.mod h1:+ukQV+NV3HPXRVqBx0hG6IXxC8uY/yEI2MMEDgdmHyg=
+github.com/duokey/vault v1.6.4 h1:Y8DfZ2gAI/q2NJEPEyyDwSm5e9OBcYlZsgt/xirtOl8=
+github.com/duokey/vault v1.6.4/go.mod h1:v8EoHWWSp5UN1dy9UOwV9CJzMFP6ziCIdcCThJp1W5c=
 github.com/duosecurity/duo_api_golang v0.0.0-20190308151101-6c680f768e74 h1:2MIhn2R6oXQbgW5yHfS+d6YqyMfXiu2L55rFZC4UD/M=
 github.com/duosecurity/duo_api_golang v0.0.0-20190308151101-6c680f768e74/go.mod h1:UqXY1lYT/ERa4OEAywUqdok1T4RCRdArkhic1Opuavo=
 github.com/dustin/go-humanize v0.0.0-20171111073723-bb3d318650d4/go.mod h1:HtrtbFcZ19U5GC7JDqmcUSB87Iq5E25KnS6fMYU6eOk=
