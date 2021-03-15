@@ -1,0 +1,78 @@
+---
+layout: docs
+page_title: DuoKey - Seals - Configuration
+sidebar_title: DuoKey
+description: >-
+  The DuoKey seal configures Vault to use Duokey as the seal
+  wrapping mechanism.
+---
+
+# `duokeykms` Seal
+
+The DuoKey seal configures Vault to use DuoKey as the seal wrapping mechanism. 
+The DuoKey seal is activated by one of the following:
+
+- The presence of a `seal "duokeykms"` block in Vault's configuration file.
+- The presence of the environment variable `VAULT_SEAL_TYPE` set to `duokeykms`.
+  If enabling via environment variable, all other required values specific to
+  DuoKey (i.e. `DUOKEY_KEY_ID`, etc.) must be also supplied, as
+  well as all other DuoKey-related environment variables that lends to successful
+  authentication (i.e. `DUOKEY_TENANT_ID`, etc.).
+
+## `duokeykms` Example
+
+This example shows configuring DuoKey seal through the Vault
+configuration file by providing all the required values:
+
+```hcl
+seal "duokeykms" {
+ issuer = "https://duokey-cockpit-staging.azurewebsites.net"
+ client_id = "client"
+ client_secret = "5353347c-f5d1-44c0-80db-16261628d36c"
+ vault_id = "688cae61-6098-488a-a2dd-a9983c6111bf"
+ tenant_id = "1"
+ username = "admin"
+ password = "C03CXtU11sb3Zif1"
+ scope = "default-api"
+ key_id = "a5e32505-7df3-4097-b86c-47f4f533ab46",
+ basepath = "https://duokey-cockpit-staging.azurewebsites.net"
+ encryptroute = "/api/services/app/Keys/CreateEncryptRequest"
+ decryptroute = "/api/services/app/Keys/CreateDecryptRequest"
+}
+```
+
+## `duokeykms` Parameters
+
+These parameters apply to the `seal` stanza in the Vault configuration file:
+
+- `issuer` `(string: <required>)`:
+
+- `client_id` `(string: <required>)`: 
+
+- `client_secret` `(string: <required>)`: The client secret for credentials to query the DuoKey API.
+  May also be specified by the `DUOKEY_CLIENT_SECRET` environment variable.
+
+- `vault_id` `(string: <required>)`: 
+
+- `tenant_id` `(string: <required>)`:
+
+- `username` `(string: <required>)`: 
+
+- `password` `(string: <required>)`:
+
+- `scope` `(string: <required>)`:
+
+- `key_id` `(string: <required>)`:
+
+- `basepath` `(string: <required>)`:
+
+- `encryptroute` `(string: <required>)`:
+
+- `decryptroute` `(string: <required>)`: 
+
+## Authentication
+
+Authentication-related values must be provided, either as environment
+variables or as configuration parameters.
+
+DuoKey authentication values:
