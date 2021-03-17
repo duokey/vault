@@ -168,8 +168,6 @@ func configureWrapper(configKMS *KMS, infoKeys *[]string, info *map[string]strin
 		Logger: logger,
 	}
 
-	fmt.Println("=== " + configKMS.Type)
-
 	switch configKMS.Type {
 	case wrapping.Shamir:
 		return nil, nil
@@ -187,7 +185,6 @@ func configureWrapper(configKMS *KMS, infoKeys *[]string, info *map[string]strin
 		wrapper, kmsInfo, err = GetAzureKeyVaultKMSFunc(opts, configKMS)
 
 	case wrapping.DuoKeyKMS:
-		fmt.Println("=== DuoKey")
 		wrapper, kmsInfo, err = GetDuoKeyKMSFunc(opts, configKMS)
 
 	case wrapping.GCPCKMS:
