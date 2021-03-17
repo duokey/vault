@@ -47,28 +47,38 @@ These parameters apply to the `seal` stanza in the Vault configuration file:
 
 - `issuer` `(string: <required>)`:
 
-- `client_id` `(string: <required>)`: 
+- `client_id` `(string: <required>)`: The client id for credentials to query the DuoKey API.
+  May also be specified by the `DUOKEY_CLIENT_ID` environment variable.
 
 - `client_secret` `(string: <required>)`: The client secret for credentials to query the DuoKey API.
   May also be specified by the `DUOKEY_CLIENT_SECRET` environment variable.
 
-- `vault_id` `(string: <required>)`: 
+- `vault_id` `(string: <required>)`: The vault to use for encryption and
+  decryption. May also be specified by the `DUOKEY_VAULT_ID` environment variable.
 
-- `tenant_id` `(string: <required>)`:
+- `tenant_id` `(string: <required>)`: The tenant id for the DuoKey organization. May
+  also be specified by the `DUOKEY_TENANT_ID` environment variable.
 
 - `username` `(string: <required>)`: 
 
 - `password` `(string: <required>)`:
 
-- `scope` `(string: <required>)`:
+- `scope` `(string: <required>)`: The scope of the token.
 
-- `key_id` `(string: <required>)`:
+- `key_id` `(string: <required>)`: The DuoKey key ID to use for encryption
+  and decryption. May also be specified by the `DUOKEY_KEY_ID`
+  environment variable.
 
-- `basepath` `(string: <required>)`:
+- `basepath` `(string: <required>)`: The base URL of the DuoKey API. 
+  May also be specified by the `DUOKEY_BASE_PATH` environment variable.
 
-- `encryptroute` `(string: <required>)`:
+- `encrypt_route` `(string: <required>)`: The DuoKey API route to be used to 
+  make an encryption request. May also be specified by the `DUOKEY_ENCRYPT_ROUTE` 
+  environment variable.
 
-- `decryptroute` `(string: <required>)`: 
+- `decrypt_route` `(string: <required>)`: The DuoKey API endpoint to be used to 
+  make a decryption request. May also be specified by the `DUOKEY_DECRYPT_ROUTE` 
+  environment variable.
 
 ## Authentication
 
@@ -76,3 +86,8 @@ Authentication-related values must be provided, either as environment
 variables or as configuration parameters.
 
 DuoKey authentication values:
+
+
+## Key Rotation
+
+This seal does not support rotating keys yet.
