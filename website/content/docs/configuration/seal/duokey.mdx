@@ -13,6 +13,7 @@ The DuoKey seal configures Vault to use DuoKey as the seal wrapping mechanism.
 The DuoKey seal is activated by one of the following:
 
 - The presence of a `seal "duokeykms"` block in Vault's configuration file.
+
 - The presence of the environment variable `VAULT_SEAL_TYPE` set to `duokeykms`.
   If enabling via environment variable, all other required values specific to
   DuoKey (i.e. `DUOKEY_KEY_ID`, etc.) must be also supplied, as
@@ -35,7 +36,7 @@ seal "duokeykms" {
  password = "C03CXtU11sb3Zif1"
  scope = "default-api"
  key_id = "a5e32505-7df3-4097-b86c-47f4f533ab46",
- basepath = "https://duokey-cockpit-staging.azurewebsites.net"
+ base_url = "https://duokey-cockpit-staging.azurewebsites.net"
  encryptroute = "/api/services/app/Keys/CreateEncryptRequest"
  decryptroute = "/api/services/app/Keys/CreateDecryptRequest"
 }
@@ -45,7 +46,8 @@ seal "duokeykms" {
 
 These parameters apply to the `seal` stanza in the Vault configuration file:
 
-- `issuer` `(string: <required>)`:
+- `issuer` `(string: <required>)`:  The named external system that provides identity 
+  and API access by issuing an OAuth access token. May also be specified by the 
 
 - `client_id` `(string: <required>)`: The client id for credentials to query the DuoKey API.
   May also be specified by the `DUOKEY_CLIENT_ID` environment variable.
@@ -59,18 +61,21 @@ These parameters apply to the `seal` stanza in the Vault configuration file:
 - `tenant_id` `(string: <required>)`: The tenant id for the DuoKey organization. May
   also be specified by the `DUOKEY_TENANT_ID` environment variable.
 
-- `username` `(string: <required>)`: 
+- `username` `(string: <required>)`: The username. May
+  also be specified by the `DUOKEY_USERNAME` environment variable. 
 
-- `password` `(string: <required>)`:
+- `password` `(string: <required>)`: The password. May also be specified by the 
+  `DUOKEY_PASSWORD` environment variable. 
 
-- `scope` `(string: <required>)`: The scope of the token.
+- `scope` `(string: <required>)`: The scope of the token. May also be 
+  specified by the `DUOKEY_SCOPE` environment variable.
 
 - `key_id` `(string: <required>)`: The DuoKey key ID to use for encryption
   and decryption. May also be specified by the `DUOKEY_KEY_ID`
   environment variable.
 
-- `basepath` `(string: <required>)`: The base URL of the DuoKey API. 
-  May also be specified by the `DUOKEY_BASE_PATH` environment variable.
+- `base_url` `(string: <required>)`: The base URL of the DuoKey API. 
+  May also be specified by the `DUOKEY_BASE_URL` environment variable.
 
 - `encrypt_route` `(string: <required>)`: The DuoKey API route to be used to 
   make an encryption request. May also be specified by the `DUOKEY_ENCRYPT_ROUTE` 
@@ -87,6 +92,19 @@ variables or as configuration parameters.
 
 DuoKey authentication values:
 
+- `DUOKEY_ISSUER`
+
+- `DUOKEY_CLIENT_ID`
+
+- `DUOKEY_CLIENT_SECRET`
+
+- `DUOKEY_TENANT_ID`
+
+- `DUOKEY_USERNAME`
+
+- `DUOKEY_PASSWORD`
+
+- `DUOKEY_SCOPE`
 
 ## Key Rotation
 

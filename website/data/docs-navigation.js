@@ -55,6 +55,7 @@ export default [
           'alicloudkms',
           'awskms',
           'azurekeyvault',
+          'duokey',
           'gcpckms',
           'ocikms',
           'pkcs11',
