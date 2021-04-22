@@ -5,4 +5,4 @@ COPY ./package.json /website/package.json
 COPY ./package-lock.json /website/package-lock.json
 WORKDIR /website
 RUN npm install
-RUN npm start
+
