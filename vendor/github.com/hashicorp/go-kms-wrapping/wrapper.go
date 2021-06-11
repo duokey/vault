@@ -2,7 +2,6 @@ package wrapping
 
 import (
 	"context"
-
 	"github.com/hashicorp/go-hclog"
 )
 
@@ -12,6 +11,7 @@ const (
 	AliCloudKMS     = "alicloudkms"
 	AWSKMS          = "awskms"
 	AzureKeyVault   = "azurekeyvault"
+	DuoKeyKMS       = "duokeykms"
 	GCPCKMS         = "gcpckms"
 	HuaweiCloudKMS  = "huaweicloudkms"
 	MultiWrapper    = "multiwrapper"
@@ -53,4 +53,8 @@ type Wrapper interface {
 // WrapperOptions contains options used when creating a Wrapper
 type WrapperOptions struct {
 	Logger hclog.Logger
+
+	// KeyNotRequired indicates if an existing key must be
+	// supplied in the configuration for a Wrapper.
+	KeyNotRequired bool
 }
