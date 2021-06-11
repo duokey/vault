@@ -69,6 +69,7 @@
           @defaultShown={{attr.options.defaultShown}}
           @label={{capitalize (or attr.options.label (humanize (dasherize attr.name)))}}
           @value={{or (get @model attr.name) defaultDisplay}}
+          @isLink={{eq attr.name 'database'}}
         />
       {{/if}}
     {{/let}}
@@ -94,20 +95,24 @@
         @roleType={{@model.type}}
         @model={{@model}}
         @mode={{@mode}}
-        @dbType={{this.databaseType}}
+        @dbType={{await this.databaseType}}
       />
 
       <div class="field is-grouped is-grouped-split is-fullwidth box is-bottomless">
         <div class="field is-grouped">
           <div class="control">
-            {{#if (is-empty-object this.warningMessages)}}
+            {{#if (is-empty-value this.warningMessages)}}
               <button
                 data-test-secret-save
                 type="submit"
-                {{!-- disabled={{this.missingFields}} // TODO validation --}}
-                class="button is-primary"
+                disabled={{this.loading}}
+                class="button is-primary {{if this.loading 'is-loading'}}"
               >
-                Save
+                {{#if (eq @mode 'create')}}
+                  Create role
+                {{else}}
+                  Save
+                {{/if}}
               </button>
             {{else}}
               <ToolTip @horizontalPosition="left" as |T|>
